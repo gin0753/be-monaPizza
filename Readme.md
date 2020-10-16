@@ -5,10 +5,10 @@
     3. git branch [your-branch]    //create your own branch (NO DIRECT EDITTING on develop branch!)
     4. git checkout [your-branch]  //switch to your-branch
     5. (...code editing...)
-    5. git add .
-    6. git commit -m "commit message"
-    7. git push    //push your work to bitbucket
-    8. (create a pull request on BitBucket when you wish to merge)
+    6. git add .
+    7. git commit -m "commit message"
+    8. git push --set-upstream origin [your-branch]    //push your work to bitbucket, but has no merged yet
+    9. (create a pull request on BitBucket when you wish to merge)
 
 
 
