@@ -18,9 +18,19 @@
 09/10/2020 Norman2 (dev-branch-write-test)
 09/10/2020 Norman2 (dev-branch-write-test)
 09/10/2020 Norman2 (master)
+<<<<<<< HEAD
+09/10/2020 Norman (develop) [test]
+10/10/2020 Derrick (develop) [test]
+10/10/2020 Derrick (develop) [test2]
+12/10/2020 Derrick (develop) [test3]
+13/10/2020 Derrick (develop) [test4]
+15/10/2020 Derrick (develop) [test5]
+=======
 12/10/2020 JYM[from JYM-dev]
 13/10/2020 JYM [testing]
 13/10/2020 XiaoGui [test]
+16/10/2020 Derrick [test]
 
 
 
+>>>>>>> 7d2fb1581a43668246d8e7924ed24ddb3ca3096d
