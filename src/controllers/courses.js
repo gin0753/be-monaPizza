@@ -3,7 +3,7 @@ const Course = require('../models/course');
 
 //get all courses
 exports.index =  (ctx) => {
-    ctx.body = "abc";
+    ctx.body = "abcdef";
 };
 
 //show 1 course
