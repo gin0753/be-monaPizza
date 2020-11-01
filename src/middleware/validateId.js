@@ -1,5 +1,7 @@
 'use strict';
 
+const mongoose = require('mongoose');
+
 module.exports = function validateId(ctx, next) {
     try{
         const {id} = ctx.params;

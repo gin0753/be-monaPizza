@@ -1,5 +1,5 @@
 const { router } = require("../../loaders");
-const  courseControllers = require("../../controllers/courses");
+const courseControllers = require("../../controllers/courses");
 const clientControllers = require("../../controllers/client");
 const validateId =require("../../middleware/validateId");
 
