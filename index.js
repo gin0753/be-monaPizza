@@ -13,7 +13,3 @@ loader.app.use(bodyParser());
 loader.app.use(router.routes());
 loader.init();
 http.createServer(loader.app.callback()).listen(config.port);
-
-loader.app.listen(8080, async()=>{
-    console.log('Server start at: 8080');
-});

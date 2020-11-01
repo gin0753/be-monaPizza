@@ -8,9 +8,9 @@ router.post('/courses', courseControllers.store);
 router.get('/courses/:id', courseControllers.show);
 router.patch('/courses/:id', courseControllers.update);
 router.delete('/courses/:id', courseControllers.destroy);
-router.get('/user/:id', validateId, clientControllers.show);
-router.post('/user', clientControllers.store);
-router.put('/user/:id', validateId, clientControllers.update);
+router.get('/client/:id', validateId, clientControllers.show);
+router.post('/client', clientControllers.store);
+router.put('/client/:id', validateId, clientControllers.update);
 module.exports.router = router;
 
 
