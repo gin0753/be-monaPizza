@@ -6,21 +6,19 @@ const Users = require('../models/user');
 
 exports.store = async (ctx) => {
     const findUser = await Users.findOne({ Email: ctx.request.body.Email}).exec();
+    const {body} = ctx.request;
+    const token = jwt.sign({body}, jwtSecret, { expiresIn: '1h'});
     if(!findUser){
-        ctx.status = 404;
-        ctx.body = {    
-            message: "User not Exists!"
-        }
-    }
-    else if(ctx.request.body.Password !== findUser.Password){
-        ctx.status = 401;
-        ctx.body = {    
-            message: "Incorrect Password!"
+        const user = new Users(body);
+        const {_id} = await user.save();
+        ctx.status = 201;
+        ctx.body = {
+          message: 'User Created!',
+          _id,
+          token
         }
     }
     else{
-        const {body} = ctx.request;
-        const token = jwt.sign({body}, jwtSecret, { expiresIn: '1h'});
         ctx.status = 200;
         ctx.body = {
             message: "Login Succeeded!",
@@ -28,4 +26,3 @@ exports.store = async (ctx) => {
         }   
     }
 }
-
