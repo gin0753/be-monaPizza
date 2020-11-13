@@ -4,7 +4,6 @@ const registerControllers = require("../../controllers/register");
 const loginControllers = require("../../controllers/login");
 const googleLoginControllers = require("../../controllers/googleLogin");
 const verifyToken = require("../../middleware/verifyToken");
-const courseControllers = require("../../controllers/courses");
 const blogController = require("../../controllers/blog/index");
 const validateLogin = require("../../middleware/validateLogin");
 const clientControllers = require("../../controllers/client");
