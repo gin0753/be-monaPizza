@@ -19,7 +19,13 @@ router.get("/shopping-cart/:promoCode", codeControllers.getCode);
 router.post("/shopping-cart", codeControllers.createCode);
 router.put("/shopping-cart/:promoCode", codeControllers.updateCode);
 router.delete("/shopping-cart/:promoCode", codeControllers.deleteCode);
-
+//As a shop manager, I want to add/edit/delete/check my pizzas.
+router.get('/pizza', pizzaControllers.getAllPizza);
+router.get('/pizza/:id', pizzaControllers.getPizzaById);
+router.get('/pizza/:id', pizzaControllers.getPizzaByName);
+router.post('/pizza', pizzaControllers.addPizza);
+router.patch('/pizza/:id', pizzaControllers.updatePizza);
+router.delete('/pizza/:id', pizzaControllers.deletePizza);
 //****blog router function****
 //both shop manager and customer can check blog posts.
 router.get("/blog/:page/:pageSize", blogController.getBlog);
