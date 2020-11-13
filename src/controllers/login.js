@@ -24,6 +24,8 @@ exports.store = async (ctx) => {
         ctx.status = 200;
         ctx.body = {
             message: "Login Succeeded!",
+            username: findUser.UserName,
+            id: findUser._id,
             token
         }   
     }
