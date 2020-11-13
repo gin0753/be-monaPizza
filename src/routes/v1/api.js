@@ -10,6 +10,7 @@ const clientControllers = require("../../controllers/client");
 const validateId = require("../../middleware/validateId");
 const codeControllers = require("../../controllers/proCode");
 const menuControllers = require("../../controllers/Menu");
+const pizzaControllers = require("../../controllers/pizza");
 
 router.get("/courses", courseControllers.index);
 router.post("/courses", courseControllers.store);
