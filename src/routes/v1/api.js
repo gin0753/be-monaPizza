@@ -1,5 +1,9 @@
 const { router } = require("../../loaders");
 const courseControllers = require("../../controllers/courses");
+const registerControllers = require("../../controllers/register");
+const loginControllers = require("../../controllers/login");
+const googleLoginControllers = require("../../controllers/googleLogin");
+const verifyToken = require("../../middleware/verifyToken");
 const blogController = require("../../controllers/blog/index");
 const validateLogin = require("../../middleware/validateLogin");
 const clientControllers = require("../../controllers/client");
@@ -42,4 +46,7 @@ router.post("/menu/:page/:pageSize", menuControllers.showBulkPizza);
 router.put("/menu/:id", validateId, menuControllers.updatePizza);
 router.delete("/menu/:id", validateId, menuControllers.deletePizza);
 
+router.post('/register', registerControllers.store);
+router.post('/login', loginControllers.store);
+router.post('/googleLogin', googleLoginControllers.store);
 module.exports.router = router;
