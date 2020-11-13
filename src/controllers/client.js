@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 const Client = require('../models/client');
 
-exports.store = async (ctx) => {
+exports.storeUser = async (ctx) => {
     const {body} = ctx.request;
     const client = new Client(body);
     const {_id} = await client.save();
@@ -14,7 +14,7 @@ exports.store = async (ctx) => {
     }
 }
 
-exports.show = async (ctx) => {
+exports.showUser = async (ctx) => {
     const {id} = ctx.params;
     const respond = await Client.findOne({_id: new mongoose.Types.ObjectId(id)});
     if(respond){
@@ -28,7 +28,7 @@ exports.show = async (ctx) => {
     }
 }
 
-exports.update = async (ctx) => {
+exports.updateUser = async (ctx) => {
     const {id} = ctx.params;
     const {body} = ctx.request;
     const respond = await Client.updateOne(
@@ -47,3 +47,20 @@ exports.update = async (ctx) => {
       }
    }
 }
+
+exports.deleteUser = async (ctx) => {
+    const { id } = ctx.params;
+    const { n } = await Client.deleteOne({ _id: new mongoose.Types.ObjectId(id)});
+    if (n === 0) {
+      ctx.body = {
+        message: `${id} not found!`,
+      };
+      ctx.status = 404;
+    } else {
+      ctx.body = {
+        message: `${id} deleted!`,
+      };
+      ctx.status = 200;
+    }
+  };
+  
