@@ -32,8 +32,7 @@ router.put("/blog/:id", validateLogin, blogController.updateBlog);
 router.delete("/blog/:id", validateLogin, blogController.deleteBlog);
 
 router.get("/menu/:name/:size", menuControllers.showOnePizza);
-router.get("/menu/:page/:pageSize", menuControllers.showBulkPizza);
-router.post("/menu", menuControllers.storePizza);
+router.post("/menu/:page/:pageSize", menuControllers.showBulkPizza);
 router.put("/menu/:id", validateId, menuControllers.updatePizza);
 router.delete("/menu/:id", validateId, menuControllers.deletePizza);
 
