@@ -18,8 +18,6 @@ const cartController = require("../../controllers/cart/cartController");
 
 
 
-
-
 // ******************************* Model: menu **************************
 
 router.get("/menu/:name/:size", menuControllers.showOnePizza);
