@@ -1,4 +1,5 @@
 const { router } = require("../../loaders");
+
 const courseControllers = require("../../controllers/courses");
 const registerControllers = require("../../controllers/register");
 const loginControllers = require("../../controllers/login");
@@ -8,25 +9,62 @@ const blogController = require("../../controllers/blog/index");
 const validateLogin = require("../../middleware/validateLogin");
 const clientControllers = require("../../controllers/client");
 const validateId = require("../../middleware/validateId");
-const codeControllers = require("../../controllers/proCode");
+
 const menuControllers = require("../../controllers/Menu");
 const pizzaControllers = require("../../controllers/pizza");
 
+const cartController = require("../../controllers/cart/cartController");
+
+
+
+
+// ******************************* Model: menu **************************
+
+router.get("/menu/:name/:size", menuControllers.showOnePizza);
+router.post("/menu/:page/:pageSize", menuControllers.showBulkPizza);
+router.put("/menu/:id", validateId, menuControllers.updatePizza);
+router.delete("/menu/:id", validateId, menuControllers.deletePizza);
+
+// ******************************* Model: cart **************************
+
+router.get("/cart/:id", cartController.getById);
+router.get("/cart", cartController.getByInfo);
+router.post("/cart", cartController.createCartRecord);
+router.put("/cart/:id", cartController.updateCart);
+router.delete("/cart/:id", cartController.deleteCart);
+
+
+
+// ***************************** Log in *****************************
+
+router.post('/register', registerControllers.store);
+router.post('/login', loginControllers.store);
+router.post('/googleLogin', googleLoginControllers.store);
+
+
+
+
+
+
+
+
+
+
+
+// *********************** Tutor's Demo ****************************
 router.get("/courses", courseControllers.index);
 router.post("/courses", courseControllers.store);
 router.get("/courses/:id", courseControllers.show);
 router.patch("/courses/:id", courseControllers.update);
 router.delete("/courses/:id", courseControllers.destroy);
 
+// ********************************* Old version ****************** 
+
 router.get("/client/:id", validateId, clientControllers.showUser);
 router.post("/client", clientControllers.storeUser);
 router.put("/client/:id", validateId, clientControllers.updateUser);
 router.delete("/client/:id", validateId, clientControllers.deleteUser);
 
-router.get("/shopping-cart/:promoCode", codeControllers.getCode);
-router.post("/shopping-cart", codeControllers.createCode);
-router.put("/shopping-cart/:promoCode", codeControllers.updateCode);
-router.delete("/shopping-cart/:promoCode", codeControllers.deleteCode);
 //As a shop manager, I want to add/edit/delete/check my pizzas.
 router.get('/pizza', pizzaControllers.getAllPizza);
 router.get('/pizza/:id', pizzaControllers.getPizzaById);
@@ -34,6 +72,12 @@ router.get('/pizza/:id', pizzaControllers.getPizzaByName);
 router.post('/pizza', pizzaControllers.addPizza);
 router.patch('/pizza/:id', pizzaControllers.updatePizza);
 router.delete('/pizza/:id', pizzaControllers.deletePizza);
+
+// ********************************* Old version ****************** 
+
+
+
+
 //****blog router function****
 //both shop manager and customer can check blog posts.
 router.get("/blog/:page/:pageSize", blogController.getBlog);
@@ -42,12 +86,8 @@ router.post("/blog", validateLogin, blogController.createBlog);
 router.put("/blog/:id", validateLogin, blogController.updateBlog);
 router.delete("/blog/:id", validateLogin, blogController.deleteBlog);
 
-router.get("/menu/:name/:size", menuControllers.showOnePizza);
-router.post("/menu/:page/:pageSize", menuControllers.showBulkPizza);
-router.put("/menu/:id", validateId, menuControllers.updatePizza);
-router.delete("/menu/:id", validateId, menuControllers.deletePizza);
 
-router.post('/register', registerControllers.store);
-router.post('/login', loginControllers.store);
-router.post('/googleLogin', googleLoginControllers.store);
+
+
+
 module.exports.router = router;
