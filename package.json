@@ -45,12 +45,7 @@
     "@types/supertest": "^2.0.10",
     "husky": "^4.3.0",
     "jest": "^26.4.2",
-<<<<<<< HEAD
-||||||| 901eb56
-    "nodemon": "^2.0.4",
-=======
     "nodemon": "^2.0.6",
->>>>>>> develop
     "prettier": "^2.1.2",
     "pretty-quick": "^3.0.2",
     "supertest": "^5.0.0",
@@ -60,5 +55,5 @@
   "engines": {
     "node": "10.x"
   },
-  "description": ""
+  "description": "1. git checkout develop   //switch to  develop branch\r     2. git pull   //pull new codes on develop branch\r     3. git branch [your-branch]    //create your own branch (NO DIRECT EDITTING on develop branch!)\r     4. git checkout [your-branch]  //switch to your-branch\r     5. (...code editing...)\r     6. git add .\r     7. git commit -m \"commit message\"\r     8. git push --set-upstream origin [your-branch]    //push your work to bitbucket, but has no merged yet\r     9. (create a pull request on BitBucket when you wish to merge)"
 }
