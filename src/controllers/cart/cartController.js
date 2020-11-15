@@ -1,6 +1,8 @@
 const Cart = require("../../models/cart/cartModel");
 const Menu = require("../../models/Menu");
 
+const mongoose = require("mongoose");
+
 const getById = async (ctx) => {
     const { id } = ctx.params;
 
@@ -18,11 +20,12 @@ const getById = async (ctx) => {
 
 const getByInfo = async (ctx) => {
     const { userId, pizzaId } = ctx.request.query;
+    
 
     if (pizzaId === undefined) {
         const res = await Cart.find({ user: userId })
 
-        if (res) {
+        if (res.length > 0) {
             ctx.status = 200;
             ctx.body = res;
         } else {
@@ -35,13 +38,14 @@ const getByInfo = async (ctx) => {
     } else {
         // const res = await Cart.findOne({ user: userId, pizza: pizzaId });
         const res = await Cart.find({
-            $or: [
+            $and: [
                 { user: userId },
                 { pizza: pizzaId }
             ]
         })
 
-        if (res) {
+
+        if (res.length > 0) {
             ctx.status = 200;
             ctx.body = res;
         } else {
