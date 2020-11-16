@@ -7,6 +7,9 @@ const getById = async (ctx) => {
     const { id } = ctx.params;
 
     const res = await Cart.findOne({ _id: id })
+
+    console.log(res)
+
     if (res) {
         ctx.status = 200;
         ctx.body = res
