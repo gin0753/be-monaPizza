@@ -14,3 +14,4 @@ module.exports = async function () {
     else { console.log("Successfully connected to database.");}
     return connection.connection.db;
 };
+
