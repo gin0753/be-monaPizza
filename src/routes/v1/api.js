@@ -26,9 +26,11 @@ router.delete("/menu/:id", validateId, menuControllers.deletePizza);
 
 // ******************************* Model: cart **************************
 
-router.get("/cart/:id", cartController.getById);
-router.get("/cart", cartController.getByInfo);
-router.post("/cart", cartController.createCartRecord);
+
+router.get("/cart/:id", cartController.getCartById);
+// http://localhost:3000/cart?userId="..."&pizzaName="..."&pizzaSize="..."
+router.get("/cart", cartController.getCartByInfo);
+router.post("/cart", cartController.createCart);
 router.put("/cart/:id", cartController.updateCart);
 router.delete("/cart/:id", cartController.deleteCart);
 
