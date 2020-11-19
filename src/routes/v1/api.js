@@ -14,6 +14,7 @@ const menuControllers = require("../../controllers/Menu");
 const pizzaControllers = require("../../controllers/pizza");
 
 const cartController = require("../../controllers/cart/cartController");
+const validateCart = require("../../middleware/cartValidation");
 
 
 
@@ -27,12 +28,13 @@ router.delete("/menu/:id", validateId, menuControllers.deletePizza);
 // ******************************* Model: cart **************************
 
 
-router.get("/cart/:id", cartController.getCartById);
+router.get("/cart/:id", validateCart.validateId, cartController.getCartById);
 // http://localhost:3000/cart?userId="..."&pizzaName="..."&pizzaSize="..."
-router.get("/cart", cartController.getCartByInfo);
+router.get("/cart", validateCart.validatePizzaInfo, cartController.getCartByInfo);
+router.get("/cart/:userId/:page/:pageSize", validateCart.validatePageNum, cartController.getCartByUser);
 router.post("/cart", cartController.createCart);
-router.put("/cart/:id", cartController.updateCart);
-router.delete("/cart/:id", cartController.deleteCart);
+router.put("/cart/:id", validateCart.validateId, cartController.updateCart);
+router.delete("/cart/:id", validateCart.validateId, cartController.deleteCart);
 
 
 
