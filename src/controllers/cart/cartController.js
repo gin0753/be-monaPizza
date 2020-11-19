@@ -43,6 +43,27 @@ const getCartByInfo = async (ctx) => {
     }
 }
 
+const getCartByUser = async (ctx) => {
+
+    const { userId, page, pageSize} = ctx.params;
+    const id = mongoose.Types.ObjectId(userId)
+
+    const res = await Cart.find({userId: id});
+
+    if(res) {
+        const newArr = res.splice((page-1)*pageSize, pageSize);
+
+        ctx.status = 200;
+        ctx.body = newArr;
+    }else{
+        ctx.status = 404;
+        ctx.body = {
+            message: "Failed to find the records"
+        }
+    }
+    
+}
+
 
 const createCart = async (ctx) => {
     
@@ -111,6 +132,7 @@ const deleteCart = async (ctx) => {
 module.exports = {
     getCartById,
     getCartByInfo,
+    getCartByUser,
     createCart,
     updateCart,
     deleteCart
