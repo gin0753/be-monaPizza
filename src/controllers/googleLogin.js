@@ -20,8 +20,11 @@ exports.store = async (ctx) => {
     }
     else{
         ctx.status = 200;
+        const {_id, UserName} = findUser;
         ctx.body = {
             message: "Login Succeeded!",
+            _id,
+            UserName,
             token
         }   
     }
