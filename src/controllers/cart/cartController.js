@@ -31,10 +31,7 @@ const getCartByInfo = async (ctx) => {
 
     if(res) {
         ctx.status = 200;
-        ctx.body = {
-            _id: res._id,
-            message: "Successfully find the record"
-        }
+        ctx.body = res;
     }else{
         ctx.status = 404;
         ctx.body = {
