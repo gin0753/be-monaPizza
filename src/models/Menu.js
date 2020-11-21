@@ -12,17 +12,12 @@ const MenuSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        PizzaImage: { 
-            required: false
-            // data: Buffer, 
-            // contentType: String 
-        }, 
         Size:{
-            type: String,
+            type: Array,
             required: true
         },
         Price: {
-            type: Number,
+            type: Object,
             required:true
         }
     },    

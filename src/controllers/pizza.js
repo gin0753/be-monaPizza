@@ -40,7 +40,7 @@ exports.getPizzaByName = (ctx) => {
 exports.addPizza = (ctx) => {
   const { body } = ctx.request;
   const pizza = new PizzaModel(body);
-  pizaa.save();
+  pizza.save();
   ctx.body = {
     code: 201,
     msg: pizza
