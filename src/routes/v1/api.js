@@ -23,6 +23,7 @@ const validateCart = require("../../middleware/cartValidation");
 
 router.get("/menu/:name/:size", menuControllers.showOnePizza);
 router.post("/menu/:page/:pageSize", menuControllers.showBulkPizza);
+router.post("/menu", menuControllers.addPizza);
 router.put("/menu/:id", validateId, menuControllers.updatePizza);
 router.delete("/menu/:id", validateId, menuControllers.deletePizza);
 
