@@ -44,17 +44,18 @@ const OrderSchema = new mongoose.Schema(
         },
         cartSubTotal: {
             type: Number,
-            // required: true
+            required: true
+        },
+        discount: {
+            type: Number,
+            required: true
         },
         totalPrice: {
             type: Number,
-            // required: true
+            required: true
         },
         shippingAddr: {
             type: String
-        },
-        shippingCosts: {
-            type: Number
         }
     },    
 );

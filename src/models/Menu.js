@@ -12,11 +12,6 @@ const MenuSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        PizzaImage: { 
-            required: false
-            // data: Buffer, 
-            // contentType: String 
-        }, 
         Size:{
             type: String,
             required: true
