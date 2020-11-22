@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 module.exports = async function () {
-    const connection = await mongoose.connect('mongodb+srv://admin:admin@cluster0.c7jps.mongodb.net/Mona-pizza?retryWrites=true&w=majority', {
+    const connection = await mongoose.connect('mongodb+srv://admin:admin@cluster0.wonw4.mongodb.net/Mona-pizza?retryWrites=true&w=majority', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,
@@ -14,3 +14,6 @@ module.exports = async function () {
     else { console.log("Successfully connected to database.");}
     return connection.connection.db;
 };
+
+
+// mongodb+srv://admin:admin@cluster0.wonw4.mongodb.net/Mona-pizza?retryWrites=true&w=majority

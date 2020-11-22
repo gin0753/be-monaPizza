@@ -9,11 +9,13 @@ const blogController = require("../../controllers/blog/index");
 const validateLogin = require("../../middleware/validateLogin");
 const clientControllers = require("../../controllers/client");
 const validateId = require("../../middleware/validateId");
+const orderControllers = require("../../controllers/order");
 
 const menuControllers = require("../../controllers/Menu");
 const pizzaControllers = require("../../controllers/pizza");
 
 const cartController = require("../../controllers/cart/cartController");
+const validateCart = require("../../middleware/cartValidation");
 
 
 
@@ -27,11 +29,14 @@ router.delete("/menu/:id", validateId, menuControllers.deletePizza);
 
 // ******************************* Model: cart **************************
 
-router.get("/cart/:id", cartController.getById);
-router.get("/cart", cartController.getByInfo);
-router.post("/cart", cartController.createCartRecord);
-router.put("/cart/:id", cartController.updateCart);
-router.delete("/cart/:id", cartController.deleteCart);
+
+router.get("/cart/:id", validateCart.validateId, cartController.getCartById);
+// http://localhost:3000/cart?userId="..."&pizzaName="..."&pizzaSize="..."
+router.get("/cart", validateCart.validatePizzaInfo, cartController.getCartByInfo);
+router.get("/cart/:userId/:page/:pageSize", validateCart.validatePageNum, cartController.getCartByUser);
+router.post("/cart", cartController.createCart);
+router.put("/cart/:id", validateCart.validateId, cartController.updateCart);
+router.delete("/cart/:id", validateCart.validateId, cartController.deleteCart);
 
 
 
@@ -43,10 +48,11 @@ router.post('/googleLogin', googleLoginControllers.store);
 
 
 
-
-
-
-
+// ***************************** Order *****************************
+router.get('/order/:id', orderControllers.displayOneOrder);
+router.get('/order/:email/:page/:pageSize', orderControllers.displayClientOrder);
+router.post('/order', orderControllers.generateOrder);
+router.delete('/order/:id', orderControllers.deleteOrder);
 
 
 
