@@ -43,15 +43,6 @@ exports.showBulkPizza = async (ctx) => {
 }
 
 exports.addPizza = async(ctx) => {
-<<<<<<< HEAD
-        const { body } = ctx.request;
-        const pizza = new Menu(body);
-        pizza.save();
-        ctx.body = {
-          code: 201,
-          msg: pizza
-        }
-=======
     const { body } = ctx.request;
     const pizza = new Menu(body);
     pizza.save();
@@ -59,7 +50,6 @@ exports.addPizza = async(ctx) => {
         code: 201,
         msg: pizza
     }
->>>>>>> develop
 }
 
 exports.updatePizza = async (ctx) => {
