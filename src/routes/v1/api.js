@@ -17,6 +17,10 @@ const pizzaControllers = require("../../controllers/pizza");
 const cartController = require("../../controllers/cart/cartController");
 const validateCart = require("../../middleware/cartValidation");
 
+const promoCodeController = require("../../controllers/promoCode/proCode");
+const validateCode = require("../../middleware/codeValidation");
+
+
 
 
 // ******************************* Model: menu **************************
@@ -26,6 +30,7 @@ router.post("/menu/:page/:pageSize", menuControllers.showBulkPizza);
 router.post("/menu", menuControllers.addPizza);
 router.put("/menu/:id", validateId, menuControllers.updatePizza);
 router.delete("/menu/:id", validateId, menuControllers.deletePizza);
+
 
 // ******************************* Model: cart **************************
 
@@ -37,6 +42,17 @@ router.get("/cart/:userId/:page/:pageSize", validateCart.validatePageNum, cartCo
 router.post("/cart", cartController.createCart);
 router.put("/cart/:id", validateCart.validateId, cartController.updateCart);
 router.delete("/cart/:id", validateCart.validateId, cartController.deleteCart);
+
+
+// ******************************* Model: promoCode **************************
+
+// promoCode is a six digital number
+router.get("/promoCode/:id", validateCode.validateId, promoCodeController.getCodeById);
+// http://localhost:8000/promoCode?codeNum="..."
+router.get("/promoCode", validateCode.validateCodeInfo, promoCodeController.getCodeByNum);
+router.post("/promoCode", validateCode.validateCodePost, promoCodeController.createCode);
+router.put("/promoCode/:id", validateCode.validateId, promoCodeController.updateCode);
+router.delete("/promoCode/:id", validateCode.validateId, promoCodeController.deleteCode);
 
 
 
@@ -53,6 +69,9 @@ router.get('/order/:id', orderControllers.displayOneOrder);
 router.get('/order/:email/:page/:pageSize', orderControllers.displayClientOrder);
 router.post('/order', orderControllers.generateOrder);
 router.delete('/order/:id', orderControllers.deleteOrder);
+
+
+
 
 
 
