@@ -16,7 +16,9 @@ const pizzaControllers = require("../../controllers/pizza");
 
 const cartController = require("../../controllers/cart/cartController");
 const validateCart = require("../../middleware/cartValidation");
+const { app } = require("../../loaders/koa");
 
+const paymentController = require("../../controllers/checkout");
 const promoCodeController = require("../../controllers/promoCode/proCode");
 const validateCode = require("../../middleware/codeValidation");
 
@@ -111,6 +113,9 @@ router.post("/blog", validateLogin, blogController.createBlog);
 router.put("/blog/:id", validateLogin, blogController.updateBlog);
 router.delete("/blog/:id", validateLogin, blogController.deleteBlog);
 
+
+//payment api
+router.post("/checkout", paymentController.processPayment)
 
 
 
