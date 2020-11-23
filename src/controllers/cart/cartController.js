@@ -44,9 +44,8 @@ const getCartByInfo = async (ctx) => {
 const getCartByUser = async (ctx) => {
 
     const { userId, page, pageSize} = ctx.params;
-    const id = mongoose.Types.ObjectId(userId)
 
-    const res = await Cart.find({userId: id});
+    const res = await Cart.find({userId: userId});
 
     if(res) {
         const newArr = res.splice((page-1)*pageSize, pageSize);
