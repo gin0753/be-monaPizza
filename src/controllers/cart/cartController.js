@@ -125,6 +125,24 @@ const deleteCart = async (ctx) => {
     }
 }
 
+const deleteBulkCart = async (ctx) => {
+    
+    const res = await Cart.remove({});
+    
+    if(res) {
+        ctx.status = 200;
+        ctx.body = {
+            res,
+            message: "Successfully delete all record"
+        }
+    }else{
+        ctx.status = 404;
+        ctx.body = {
+            message: "Failed to delete all record"
+        }
+    }
+}
+
 
 module.exports = {
     getCartById,
@@ -132,5 +150,6 @@ module.exports = {
     getCartByUser,
     createCart,
     updateCart,
-    deleteCart
+    deleteCart,
+    deleteBulkCart
 }

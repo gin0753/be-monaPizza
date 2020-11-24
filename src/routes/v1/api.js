@@ -44,6 +44,7 @@ router.get("/cart/:userId/:page/:pageSize", validateCart.validatePageNum, cartCo
 router.post("/cart", cartController.createCart);
 router.put("/cart/:id", validateCart.validateId, cartController.updateCart);
 router.delete("/cart/:id", validateCart.validateId, cartController.deleteCart);
+router.delete("/cart", cartController.deleteBulkCart);
 
 
 // ******************************* Model: promoCode **************************
