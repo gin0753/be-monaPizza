@@ -56,6 +56,9 @@ const OrderSchema = new mongoose.Schema(
         },
         shippingAddr: {
             type: String
+        },
+        orderNotes: {
+            type: String
         }
     },    
 );
