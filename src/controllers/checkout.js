@@ -2,14 +2,16 @@ const stripe = require("stripe")("sk_test_51Hqd19DahGEftvCwTq7hrLvteF6vtR9rtAoKg
 
 exports.processPayment = async (ctx) => {
     try{
-        const {token} = ctx.request.body;
+        console.log(ctx.request.body)
+        const {token, product} = ctx.request.body;
+        
         const customer = await stripe.customers.create({
             email: token.email,
             source: token.id
         })
 
         const charge = await stripe.charges.create({
-            amount: 123,
+            amount: product.price,
             currency: 'aud',
             customer: customer.id,
             receipt_email: token.email,
