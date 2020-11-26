@@ -65,6 +65,9 @@ router.post('/register', registerControllers.store);
 router.post('/login', loginControllers.store);
 router.post('/googleLogin', googleLoginControllers.store);
 
+//email confirmation
+// router.post('/confirmation', userController.confirmationPost);
+// router.post('/resend', userController.resendTokenPost);
 
 
 // ***************************** Order *****************************
@@ -117,8 +120,6 @@ router.delete("/blog/:id", validateLogin, blogController.deleteBlog);
 
 //payment api
 router.post("/checkout", paymentController.processPayment)
-
-
 
 
 module.exports.router = router;

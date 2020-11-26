@@ -12,10 +12,6 @@ const MenuSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        Size:{
-            type: Array,
-            required: true
-        },
         Price: {
             type: Object,
             required:true
