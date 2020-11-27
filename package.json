@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/tianyang-guan/weather-app#readme",
   "dependencies": {
-    "crypto": "^1.0.1",
     "got": "^11.7.0",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.13.0",

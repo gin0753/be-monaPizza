@@ -22,5 +22,5 @@ const tokenSchema = new mongoose.Schema(
     },    
 );
 
-const Menu = mongoose.model('Menu', tokenSchema);
-module.exports = Menu;
+const emailToken = mongoose.model('emailToken', tokenSchema);
+module.exports = emailToken;
