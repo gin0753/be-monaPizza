@@ -19,15 +19,24 @@ exports.store = async (ctx) => {
         }
     }
     else{
-        const {body} = ctx.request;
-        const token = jwt.sign({body}, jwtSecret, { expiresIn: '1h'});
-        ctx.status = 200;
-        ctx.body = {
-            message: "Login Succeeded!",
-            username: findUser.UserName,
-            id: findUser._id,
-            token
-        }   
+        const { isVerified } = await Users.findOne({ Email: ctx.request.body.Email}).exec();
+        if(isVerified){
+            const {body} = ctx.request;
+            const token = jwt.sign({body}, jwtSecret, { expiresIn: '1h'});
+            ctx.status = 200;
+            ctx.body = {
+                message: "Login Succeeded!",
+                username: findUser.UserName,
+                id: findUser._id,
+                token
+            }   
+        }
+        else{
+            ctx.status = 401;
+            ctx.body = {
+                message: "Please Confirm Your Email Before Logging In!",
+            }   
+        }
     }
 }
 

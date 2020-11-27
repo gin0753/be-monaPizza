@@ -22,8 +22,7 @@ const paymentController = require("../../controllers/checkout");
 const promoCodeController = require("../../controllers/promoCode/proCode");
 const validateCode = require("../../middleware/codeValidation");
 
-
-
+const loginConfirmation = require("../../controllers/loginConfirmation");
 
 // ******************************* Model: menu **************************
 
@@ -65,6 +64,9 @@ router.post('/register', registerControllers.store);
 router.post('/login', loginControllers.store);
 router.post('/googleLogin', googleLoginControllers.store);
 
+//email confirmation
+router.get('/confirmation/:token', loginConfirmation.emailConfirm);
+// router.post('/resend', userController.resendTokenPost);
 
 
 // ***************************** Order *****************************
@@ -117,8 +119,6 @@ router.delete("/blog/:id", validateLogin, blogController.deleteBlog);
 
 //payment api
 router.post("/checkout", paymentController.processPayment)
-
-
 
 
 module.exports.router = router;

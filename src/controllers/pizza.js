@@ -1,4 +1,3 @@
-const Course = require('../models/course');
 const PizzaModel = require('../models/pizza');
 
 //get all pizza
