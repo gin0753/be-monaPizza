@@ -8,6 +8,7 @@ const jwtSecret = 'jwtSecret';
 exports.store = async (ctx) => {
     const findUser = await Users.findOne({ Email: ctx.request.body.Email}).exec();
     const {body} = ctx.request;
+    const userEmail = body.Email;
     const user = new Users(body);
     const {_id} = await user.save();
 
@@ -36,7 +37,7 @@ exports.store = async (ctx) => {
     
         let mailOptions = ({
           from: 'no.replymonapizza@gmail.com',
-          to:  'ginrobin0204@gmail.com', 
+          to:  userEmail, 
           subject: "Email Confirmation",
           html: `<b>Please click the link to confirm your Email: <a href="${verificationURL}">${verificationURL}</a></b>`, // html body
         });

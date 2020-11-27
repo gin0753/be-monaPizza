@@ -22,11 +22,7 @@ const paymentController = require("../../controllers/checkout");
 const promoCodeController = require("../../controllers/promoCode/proCode");
 const validateCode = require("../../middleware/codeValidation");
 
-const jwt = require('jsonwebtoken'); 
-const jwtSecret = 'jwtSecret';
-const Users = require('../../models/user');
-
-
+const loginConfirmation = require("../../controllers/loginConfirmation");
 
 // ******************************* Model: menu **************************
 
@@ -69,20 +65,7 @@ router.post('/login', loginControllers.store);
 router.post('/googleLogin', googleLoginControllers.store);
 
 //email confirmation
-router.get('/confirmation/:token', async (ctx) => {
-    // const para = JSON.stringify(ctx.params)
-    try{
-        const {user: {_id}} = jwt.verify(ctx.params, jwtSecret);
-        await Users.updateOne({_id: new mongoose.Types.ObjectId(_id)}, {$set: {idVerified: true}});
-        await ctx.redirect('http://127.0.0.1:8000/login');
-    }
-    catch(err){
-        ctx.body = {
-            message: err,
-            token: ctx.params
-        }
-    }
-});
+router.get('/confirmation/:token', loginConfirmation.emailConfirm);
 // router.post('/resend', userController.resendTokenPost);
 
 

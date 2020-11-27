@@ -18,23 +18,25 @@ exports.store = async (ctx) => {
             message: "Incorrect Password!"
         }
     }
-    else if(!ctx.request.body.idVerified){
-        ctx.status = 401;
-        ctx.body = {
-            type: 'not-verified',
-            message: 'Your Email Has Not Been Verified!'
-        }
-    }
     else{
-        const {body} = ctx.request;
-        const token = jwt.sign({body}, jwtSecret, { expiresIn: '1h'});
-        ctx.status = 200;
-        ctx.body = {
-            message: "Login Succeeded!",
-            username: findUser.UserName,
-            id: findUser._id,
-            token
-        }   
+        const { isVerified } = await Users.findOne({ Email: ctx.request.body.Email}).exec();
+        if(isVerified){
+            const {body} = ctx.request;
+            const token = jwt.sign({body}, jwtSecret, { expiresIn: '1h'});
+            ctx.status = 200;
+            ctx.body = {
+                message: "Login Succeeded!",
+                username: findUser.UserName,
+                id: findUser._id,
+                token
+            }   
+        }
+        else{
+            ctx.status = 401;
+            ctx.body = {
+                message: "Please Confirm Your Email Before Logging In!",
+            }   
+        }
     }
 }
 
