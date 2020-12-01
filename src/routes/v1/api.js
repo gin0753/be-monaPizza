@@ -60,9 +60,11 @@ router.delete("/promoCode/:id", validateCode.validateId, promoCodeController.del
 
 // ***************************** Log in *****************************
 
+router.get('/login/:userId/:currentPassword', loginControllers.matchPassword);
 router.post('/register', registerControllers.store);
 router.post('/login', loginControllers.store);
 router.post('/googleLogin', googleLoginControllers.store);
+router.put('/login/:userId', loginControllers.updatePassword);
 
 //email confirmation
 router.get('/confirmation/:token', loginConfirmation.emailConfirm);
@@ -90,9 +92,9 @@ router.delete("/courses/:id", courseControllers.destroy);
 
 // ********************************* Old version ****************** 
 
-router.get("/client/:id", validateId, clientControllers.showUser);
+router.get("/client/:userId", clientControllers.showUser);
 router.post("/client", clientControllers.storeUser);
-router.put("/client/:id", validateId, clientControllers.updateUser);
+router.put("/client/:userId", validateId, clientControllers.updateUser);
 router.delete("/client/:id", validateId, clientControllers.deleteUser);
 
 //As a shop manager, I want to add/edit/delete/check my pizzas.
