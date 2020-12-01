@@ -94,7 +94,7 @@ router.delete("/courses/:id", courseControllers.destroy);
 
 router.get("/client/:userId", clientControllers.showUser);
 router.post("/client", clientControllers.storeUser);
-router.put("/client/:userId", validateId, clientControllers.updateUser);
+router.put("/client/:userId", clientControllers.updateUser);
 router.delete("/client/:id", validateId, clientControllers.deleteUser);
 
 //As a shop manager, I want to add/edit/delete/check my pizzas.
