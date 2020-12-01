@@ -53,7 +53,7 @@ exports.updateUser = async (ctx) => {
    else{
        ctx.status = 404;
        ctx.body = {
-          message: `${id} Not Exists!`
+          message: `${userId} Not Exists!`
       }
    }
 }
