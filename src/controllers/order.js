@@ -33,7 +33,7 @@ exports.displayClientOrder = async (ctx) => {
     page = +page;
     pageSize = +pageSize;
     const skip = (page - 1) * pageSize;
-    const total = await Order.find({clientEmail: email}).count();
+    const total = await Order.find({clientEmail: email}).countDocuments();
     const orders = await Order.find({clientEmail: email}).skip(skip).limit(pageSize);
 
     ctx.body = {

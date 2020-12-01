@@ -5,34 +5,44 @@ const Client = require('../models/client');
 
 exports.storeUser = async (ctx) => {
     const {body} = ctx.request;
-    const client = new Client(body);
-    const {_id} = await client.save();
-    ctx.status = 201;
-    ctx.body = {
-        message: 'Client Info Stored!',
-        _id
+    const userId = body.userId;
+    const findUser = await Client.findOne({userId: userId})
+    if(!findUser){
+        const client = new Client(body);
+        const {_id} = await client.save();
+        ctx.status = 201;
+        ctx.body = {
+            message: 'Client Info Stored!',
+            _id
+        }
+    }
+    else{
+        ctx.status = 409;
+        ctx.body = {
+            message: 'Client Already Exists!'
+        }
     }
 }
 
 exports.showUser = async (ctx) => {
-    const {id} = ctx.params;
-    const respond = await Client.findOne({_id: new mongoose.Types.ObjectId(id)});
+    const {userId} = ctx.params;
+    const respond = await Client.findOne({userId: userId});
     if(respond){
         ctx.body = respond;
     }
     else{
         ctx.status = 404;
         ctx.body = {
-            message: `${id} Not Exists!`
+            message: `${userId} Not Exists!`
         }
     }
 }
 
 exports.updateUser = async (ctx) => {
-    const {id} = ctx.params;
+    const {userId} = ctx.params;
     const {body} = ctx.request;
     const respond = await Client.updateOne(
-        {_id: new mongoose.Types.ObjectId(id)}, 
+        {userId: userId}, 
         {$set: body}
    );
    if(respond.n !== 0){

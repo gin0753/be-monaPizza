@@ -3,47 +3,57 @@
 const mongoose = require('mongoose');
 
 const ClientSchema = new mongoose.Schema(
-    {
-        Country: {
+    {   
+        userId: {
             type: String,
             required: true
         },
-        FirstName: {
+        country: {
             type: String,
             required: true
         },
-        LastName: {
+        clientFirstName: {
+            type: String,
+            required: true
+        },
+        clientLastName: {
             type:String,
             required:true
         },
-        CompanyName: {
+        companyName: {
             type:String
         },
-        Street: {
+        billingAddr: {
             type:String,
             required: true
         },
-        OptionalAddr: {
+        billingUnit: {
             type:String
         },
-        City: {
+        city: {
             type:String,
             required: true
         },
-        County: {
+        county: {
             type:String
         },
-        Postcode: {
+        postcode: {
             type:Number,
             required: true
         },
-        Email: {
+        clientEmail: {
             type:String,
             required: true
         },
-        Phone: {
+        contactNumber: {
             type:Number,
             required: true
+        },
+        shippingAddr: {
+            type:String
+        },
+        shippingUnit: {
+            type:String
         }
     },    
 );
