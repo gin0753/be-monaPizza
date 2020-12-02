@@ -30,6 +30,7 @@ exports.store = async (ctx) => {
                 message: "Login Succeeded!",
                 username: findUser.UserName,
                 id: findUser._id,
+                role: findUser.Role,
                 token
             }   
         }

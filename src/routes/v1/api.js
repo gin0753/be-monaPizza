@@ -5,6 +5,7 @@ const registerControllers = require("../../controllers/register");
 const loginControllers = require("../../controllers/login");
 const googleLoginControllers = require("../../controllers/googleLogin");
 const verifyToken = require("../../middleware/verifyToken");
+const verifyRole = require("../../middleware/verifyRole");
 const blogController = require("../../controllers/blog/index");
 const validateLogin = require("../../middleware/validateLogin");
 const clientControllers = require("../../controllers/client");
@@ -64,7 +65,7 @@ router.get('/login/:userId/:currentPassword', loginControllers.matchPassword);
 router.post('/register', registerControllers.store);
 router.post('/login', loginControllers.store);
 router.post('/googleLogin', googleLoginControllers.store);
-router.put('/login/:userId', loginControllers.updatePassword);
+router.put('/login/:userId', verifyRole("ROLE.ADMIN"), loginControllers.updatePassword);
 
 //email confirmation
 router.get('/confirmation/:token', loginConfirmation.emailConfirm);
@@ -120,7 +121,7 @@ router.delete("/blog/:id", validateLogin, blogController.deleteBlog);
 
 
 //payment api
-router.post("/checkout", paymentController.processPayment)
+router.post("/checkout", verifyToken, paymentController.processPayment)
 
 
 module.exports.router = router;

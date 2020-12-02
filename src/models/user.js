@@ -27,6 +27,11 @@ const UserSchema = new mongoose.Schema(
         },
         GoogleID: {
             type: String
+        },
+        Role: {
+            type: String,
+            required: true,
+            default: 'ROLE.BASIC'
         }
     },    
 );
