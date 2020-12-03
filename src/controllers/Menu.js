@@ -82,16 +82,17 @@ exports.updatePizza = async (ctx) => {
 }
 
 exports.deletePizza = async (ctx) => {
-    const { id } = ctx.params;
-    const { n } = await Menu.deleteOne({ _id: new mongoose.Types.ObjectId(id)});
+    const { pizzaName } = ctx.params;
+    console.log(pizzaName)
+    const { n } = await Menu.deleteOne({ PizzaName: pizzaName});
     if (n === 0) {
       ctx.body = {
-        message: `${id} not found!`,
+        message: `${pizzaName} not found!`,
       };
       ctx.status = 404;
     } else {
       ctx.body = {
-        message: `${id} deleted!`,
+        message: `${pizzaName} deleted!`,
       };
       ctx.status = 200;
     }
