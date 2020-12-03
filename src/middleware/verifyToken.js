@@ -9,7 +9,7 @@ module.exports = function verifyToken (ctx, next) {
     const bearer = bearerHeader.split(' ');
     const bearerToken = bearer[1];
     jwt.verify(bearerToken, jwtSecret)
-    next();
+    return next();
   } catch (err){
     ctx.status = 401;
     ctx.body = {

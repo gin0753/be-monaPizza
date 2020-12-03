@@ -5,6 +5,10 @@ const mongoose = require('mongoose');
 const OrderSchema = new mongoose.Schema(
     
     {
+        userId:{
+            type: String,
+            required: true
+        },
         orderPlacedTime: {
             type: String,
             required: true

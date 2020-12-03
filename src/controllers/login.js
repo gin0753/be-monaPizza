@@ -2,7 +2,6 @@
 
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');  
-// const mongoose = require('../loaders/mongoose');
 const jwtSecret = 'jwtSecret';
 const Users = require('../models/user');
 
@@ -30,6 +29,7 @@ exports.store = async (ctx) => {
                 message: "Login Succeeded!",
                 username: findUser.UserName,
                 id: findUser._id,
+                role: findUser.Role,
                 token
             }   
         }

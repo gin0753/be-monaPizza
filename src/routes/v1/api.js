@@ -5,6 +5,7 @@ const registerControllers = require("../../controllers/register");
 const loginControllers = require("../../controllers/login");
 const googleLoginControllers = require("../../controllers/googleLogin");
 const verifyToken = require("../../middleware/verifyToken");
+const verifyRole = require("../../middleware/verifyRole");
 const blogController = require("../../controllers/blog/index");
 const validateLogin = require("../../middleware/validateLogin");
 const clientControllers = require("../../controllers/client");
@@ -28,8 +29,8 @@ const loginConfirmation = require("../../controllers/loginConfirmation");
 
 router.get("/menu/:name/:size", menuControllers.showOnePizza);
 router.post("/menu/:page/:pageSize", menuControllers.showBulkPizza);
-router.post("/menu", menuControllers.addPizza);
-router.put("/menu/:id", validateId, menuControllers.updatePizza);
+router.post("/menu", verifyToken, verifyRole('ROLE.ADMIN'), menuControllers.addPizza);
+router.put("/menu/:userId/:pizzaName", verifyToken, verifyRole('ROLE.ADMIN'), menuControllers.updatePizza);
 router.delete("/menu/:id", validateId, menuControllers.deletePizza);
 
 
@@ -120,7 +121,7 @@ router.delete("/blog/:id", validateLogin, blogController.deleteBlog);
 
 
 //payment api
-router.post("/checkout", paymentController.processPayment)
+router.post("/checkout", verifyToken, paymentController.processPayment)
 
 
 module.exports.router = router;
