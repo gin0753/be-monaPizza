@@ -4,8 +4,12 @@ const Users = require('../models/user');
 
 module.exports = function verifyRole(role) {
     return async(ctx, next) => {
-        const {userId} = ctx.params;
+        let userId;
+        // console.log(ctx.request.body)
+        ctx.params.userId ? userId = ctx.params.userId : userId = ctx.request.body.userId;
+        // console.log(userId)
         const findUser = await Users.findOne({_id: userId});
+        // console.log(findUser)
         if(findUser.Role === role){
             return next();
         }

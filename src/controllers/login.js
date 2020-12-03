@@ -2,7 +2,6 @@
 
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');  
-// const mongoose = require('../loaders/mongoose');
 const jwtSecret = 'jwtSecret';
 const Users = require('../models/user');
 

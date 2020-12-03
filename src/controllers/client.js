@@ -17,7 +17,6 @@ exports.storeUser = async (ctx) => {
         }
     }
     else{
-        ctx.status = 409;
         ctx.body = {
             message: 'Client Already Exists!'
         }

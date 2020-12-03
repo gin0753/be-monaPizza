@@ -65,7 +65,7 @@ router.get('/login/:userId/:currentPassword', loginControllers.matchPassword);
 router.post('/register', registerControllers.store);
 router.post('/login', loginControllers.store);
 router.post('/googleLogin', googleLoginControllers.store);
-router.put('/login/:userId', verifyRole("ROLE.ADMIN"), loginControllers.updatePassword);
+router.put('/login/:userId', loginControllers.updatePassword);
 
 //email confirmation
 router.get('/confirmation/:token', loginConfirmation.emailConfirm);
