@@ -6,7 +6,8 @@ const MenuSchema = new mongoose.Schema(
     {   
         PizzaName: {
             type: String,
-            required: true
+            required: true,
+            unique: true
         },
         Description:{
             type: String,

@@ -44,11 +44,20 @@ exports.showBulkPizza = async (ctx) => {
 
 exports.addPizza = async(ctx) => {
     const { body } = ctx.request;
-    const pizza = new Menu(body);
-    pizza.save();
-    ctx.body = {
-        code: 201,
-        msg: pizza
+    const PizzaName = await Menu.findOne({PizzaName: body.PizzaName});
+    if(!PizzaName){
+        const pizza = new Menu(body);
+        pizza.save();
+        ctx.status = 201;
+        ctx.body = {
+            message: `${PizzaName} Has Been Created!`
+        }
+    }
+    else{
+        ctx.status = 409
+        ctx.body = {
+            message: `${PizzaName} Has Already Exists!`
+        }
     }
 }
 
