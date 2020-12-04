@@ -31,7 +31,7 @@ router.get("/menu/:name/:size", menuControllers.showOnePizza);
 router.post("/menu/:page/:pageSize", menuControllers.showBulkPizza);
 router.post("/menu", verifyToken, verifyRole('ROLE.ADMIN'), menuControllers.addPizza);
 router.put("/menu/:userId/:pizzaName", verifyToken, verifyRole('ROLE.ADMIN'), menuControllers.updatePizza);
-router.delete("/menu/:id", validateId, menuControllers.deletePizza);
+router.delete("/menu/:userId/:pizzaName", verifyToken, verifyRole('ROLE.ADMIN'), menuControllers.deletePizza);
 
 
 // ******************************* Model: cart **************************

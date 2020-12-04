@@ -25,7 +25,8 @@ exports.store = async (ctx) => {
             message: "Login Succeeded!",
             _id,
             UserName,
-            token
+            token,
+            role: 'ROLE.BASIC'
         }   
     }
 }

@@ -62,10 +62,11 @@ exports.addPizza = async(ctx) => {
 }
 
 exports.updatePizza = async (ctx) => {
-    const {id} = ctx.params;
-    const {body} = ctx.request;
-    const {n} = await Menu.updateOne(
-        {_id: new mongoose.Types.ObjectId(id)}, 
+    const { pizzaName } = ctx.params;
+    const { body } = ctx.request;
+    console.log(body)
+    const { n } = await Menu.updateOne(
+        {PizzaName: pizzaName}, 
         {$set: body}
    );
    if(n !== 0){
@@ -76,14 +77,13 @@ exports.updatePizza = async (ctx) => {
    else{
        ctx.status = 404;
        ctx.body = {
-          message: `Invalid ID : ${id}!`
+          message: `Invalid PizzaName : ${pizzaName}!`
       }
    }
 }
 
 exports.deletePizza = async (ctx) => {
     const { pizzaName } = ctx.params;
-    console.log(pizzaName)
     const { n } = await Menu.deleteOne({ PizzaName: pizzaName});
     if (n === 0) {
       ctx.body = {
