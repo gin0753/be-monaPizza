@@ -64,7 +64,6 @@ exports.addPizza = async(ctx) => {
 exports.updatePizza = async (ctx) => {
     const { pizzaName } = ctx.params;
     const { body } = ctx.request;
-    console.log(body)
     const { n } = await Menu.updateOne(
         {PizzaName: pizzaName}, 
         {$set: body}

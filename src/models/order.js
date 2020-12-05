@@ -63,7 +63,11 @@ const OrderSchema = new mongoose.Schema(
         },
         orderNotes: {
             type: String
-        }
+        },
+        orderStatus: {
+            type: String,
+            required: true
+        } 
     },    
 );
 
