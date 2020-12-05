@@ -29,12 +29,12 @@ exports.displayOneOrder = async (ctx) => {
 }
 
 exports.displayClientOrder = async (ctx) => {
-    let { email, page, pageSize } = ctx.params;
+    let { userId, page, pageSize } = ctx.params;
     page = +page;
     pageSize = +pageSize;
     const skip = (page - 1) * pageSize;
-    const total = await Order.find({clientEmail: email}).countDocuments();
-    const orders = await Order.find({clientEmail: email}).skip(skip).limit(pageSize);
+    const total = await Order.find({userId: userId}).countDocuments();
+    const orders = await Order.find({userId: userId}).skip(skip).limit(pageSize);
 
     ctx.body = {
         orders,

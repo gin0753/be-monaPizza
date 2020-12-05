@@ -74,7 +74,7 @@ router.get('/confirmation/:token', loginConfirmation.emailConfirm);
 
 // ***************************** Order *****************************
 router.get('/order/:id', orderControllers.displayOneOrder);
-router.get('/order/:email/:page/:pageSize', orderControllers.displayClientOrder);
+router.get('/order/:userId/:page/:pageSize', orderControllers.displayClientOrder);
 router.post('/order', orderControllers.generateOrder);
 router.delete('/order/:id', orderControllers.deleteOrder);
 
