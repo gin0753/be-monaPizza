@@ -59,6 +59,7 @@ exports.updateUser = async (ctx) => {
 
 exports.deleteUser = async (ctx) => {
     const { id } = ctx.params;
+    const { body } = ctx.require;
     const { n } = await Client.deleteOne({ _id: new mongoose.Types.ObjectId(id)});
     if (n === 0) {
       ctx.body = {

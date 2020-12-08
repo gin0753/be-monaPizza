@@ -10,8 +10,7 @@ const OrderSchema = new mongoose.Schema(
             required: true
         },
         orderPlacedTime: {
-            type: String,
-            required: true
+            type: String
         },
         orderList: {
             type: Array,

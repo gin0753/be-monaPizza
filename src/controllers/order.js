@@ -16,9 +16,9 @@ exports.generateOrder = async (ctx) => {
 
 exports.displayOneOrder = async (ctx) => {
     const { id } = ctx.params;
-    const respond = await Order.findOne({_id: new mongoose.Types.ObjectId(id)});
-    if(respond){
-        ctx.body = respond;
+    const response = await Order.findOne({_id: new mongoose.Types.ObjectId(id)});
+    if(response){
+        ctx.body = response;
     }
     else{
         ctx.status = 404;
@@ -26,6 +26,23 @@ exports.displayOneOrder = async (ctx) => {
             message: `${ id } not found!`
         }
     }
+}
+
+exports.updateOneOrder = async (ctx) => {
+    const { id } = ctx.params;
+    const { body } = ctx.request;
+    const response = await Order.updateOne({_id: new mongoose.Types.ObjectId(id)}, {$set: body})
+    if(response.n !== 0){
+      ctx.body = {
+        message: 'Order Updated Successfully!'
+      }
+    }
+    else{
+      ctx.status = 404;
+      ctx.body = {
+        message: `${id} Not Exists!`
+    }
+  }
 }
 
 exports.displayClientOrder = async (ctx) => {
