@@ -73,7 +73,7 @@ router.get('/confirmation/:token', loginConfirmation.emailConfirm);
 
 
 // ***************************** Order *****************************
-router.get('/order/:id', orderControllers.displayOneOrder);
+router.get('/order/:status', orderControllers.displayOneOrder);
 router.get('/order/:userId/:page/:pageSize', orderControllers.displayClientOrder);
 router.post('/order', orderControllers.generateOrder);
 router.put('/order/:id', orderControllers.updateOneOrder)
