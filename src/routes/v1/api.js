@@ -76,7 +76,7 @@ router.get('/confirmation/:token', loginConfirmation.emailConfirm);
 router.get('/order/:id', orderControllers.displayOneOrder);
 router.get('/order/:userId/:page/:pageSize', orderControllers.displayClientOrder);
 router.post('/order', orderControllers.generateOrder);
-router.post('/order/:status', orderControllers.displayPeningOrders);
+router.post('/order/:status/:page/:pageSize', orderControllers.displayPeningOrders);
 router.put('/order/:id', orderControllers.updateOneOrder)
 router.delete('/order/:id', orderControllers.deleteOrder);
 
