@@ -29,17 +29,17 @@ exports.displayOneOrder = async (ctx) => {
 }
 
 exports.displayPeningOrders = async (ctx) => {
-  const { status } = ctx.params;
-  const response = await Order.find({orderStatus: status});
-  if(response){
-      ctx.body = response;
-  }
-  else{
-      ctx.status = 404;
-      ctx.body = {
-          message: `${ status } not found!`
-      }
-  }
+  let { status, page, pageSize  } = ctx.params;
+  page = +page;
+  pageSize = +pageSize;
+  const skip = (page - 1) * pageSize;
+  const total = await Order.find({orderStatus: status}).countDocuments();
+  const orders = await Order.find({orderStatus: status}).skip(skip).limit(pageSize);
+  
+  ctx.body = {
+    orders,
+    total
+  };
 }
 
 exports.updateOneOrder = async (ctx) => {
