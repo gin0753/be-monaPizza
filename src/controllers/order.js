@@ -15,19 +15,32 @@ exports.generateOrder = async (ctx) => {
 }
 
 exports.displayOneOrder = async (ctx) => {
-    const { status } = ctx.params;
-    console.log(ctx.params)
-    const response = await Order.find({orderStatus: status});
-    console.log(response)
-    if(response){
-        ctx.body = response;
-    }
-    else{
-        ctx.status = 404;
-        ctx.body = {
-            message: `${ status } not found!`
-        }
-    }
+  const { id } = ctx.params;
+  const response = await Order.findOne({_id: new mongoose.Types.ObjectId(id)});
+  console.log(response)
+  if(response){
+      ctx.body = response;
+  }
+  else{
+      ctx.status = 404;
+      ctx.body = {
+          message: `${ id } not found!`
+      }
+  }
+}
+
+exports.displayPeningOrders = async (ctx) => {
+  const { status } = ctx.params;
+  const response = await Order.find({orderStatus: status});
+  if(response){
+      ctx.body = response;
+  }
+  else{
+      ctx.status = 404;
+      ctx.body = {
+          message: `${ status } not found!`
+      }
+  }
 }
 
 exports.updateOneOrder = async (ctx) => {
