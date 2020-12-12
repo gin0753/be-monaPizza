@@ -17,7 +17,6 @@ exports.generateOrder = async (ctx) => {
 exports.displayOneOrder = async (ctx) => {
   const { id } = ctx.params;
   const response = await Order.findOne({_id: new mongoose.Types.ObjectId(id)});
-  console.log(response)
   if(response){
       ctx.body = response;
   }
