@@ -25,6 +25,8 @@ const validateCode = require("../../middleware/codeValidation");
 
 const loginConfirmation = require("../../controllers/loginConfirmation");
 
+const feedbackController = require("../../controllers/feedback");
+
 // ******************************* Model: menu **************************
 
 router.get("/menu/:name/:size", menuControllers.showOnePizza);
@@ -109,7 +111,8 @@ router.patch('/pizza/:id', pizzaControllers.updatePizza);
 router.delete('/pizza/:id', pizzaControllers.deletePizza);
 
 // ********************************* Old version ****************** 
-
+//Feedback
+router.post('/feedback', feedbackController.addFeedback);
 
 
 

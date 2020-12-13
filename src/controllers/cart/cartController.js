@@ -34,9 +34,9 @@ const getCartByInfo = async (ctx) => {
         ctx.status = 200;
         ctx.body = res;
     }else{
-        ctx.status = 404;
+        ctx.status = 201;
         ctx.body = {
-            message: "Failed to find the record"
+            message: "Failed to find the record, create a new order!"
         }
     }
 }
