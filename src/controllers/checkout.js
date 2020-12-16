@@ -3,7 +3,6 @@ const stripe = require("stripe")("sk_test_51Hqd19DahGEftvCwTq7hrLvteF6vtR9rtAoKg
 exports.processPayment = async (ctx) => {
     try{
         const {token, product} = ctx.request.body;
-        
         const customer = await stripe.customers.create({
             email: token.email,
             source: token.id
