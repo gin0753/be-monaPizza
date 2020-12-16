@@ -25,6 +25,9 @@ const CartSchema = new Schema({
         type: Number,
         required: true
     },
+    toppings: {
+        type: Array
+    },
     totalPrice: {
         type: Number,
         required: true
