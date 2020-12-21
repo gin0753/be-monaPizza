@@ -4,6 +4,7 @@ const Users = require('../models/user');
 const Nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken'); 
 const jwtSecret = 'jwtSecret';
+const api = require('../config/app');
 
 exports.store = async (ctx) => {
     const findUser = await Users.findOne({ Email: ctx.request.body.Email}).exec();
@@ -22,8 +23,8 @@ exports.store = async (ctx) => {
       try{
         const emailToken = jwt.sign({user: _id}, jwtSecret, {expiresIn: '1d'}); 
      
-        const verificationURL = `http://127.0.0.1:8000/confirmation/${emailToken}`
-     
+        const verificationURL =  'https://protected-scrubland-99331.herokuapp.com' + `/confirmation/${emailToken}`
+        
         let transporter = Nodemailer.createTransport({
           host: "smtp.ethereal.email",
           service: "Gmail",

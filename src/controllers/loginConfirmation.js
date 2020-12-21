@@ -1,16 +1,17 @@
 'use strict';
 
-const jwt = require('jsonwebtoken'); 
+const jwt = require('jsonwebtoken');
 const jwtSecret = 'jwtSecret';
 const Users = require('../models/user');
+const api = require('../config/app');
 
 exports.emailConfirm = async (ctx) => {
-    const {user} = jwt.verify(ctx.params.token, jwtSecret);
-    try{
-        await Users.updateOne({_id: user}, {$set: {isVerified: true}});
-        await ctx.redirect('https://pizza-2021.s3-ap-southeast-2.amazonaws.com/redirect');
+    const { user } = jwt.verify(ctx.params.token, jwtSecret);
+    try {
+        await Users.updateOne({ _id: user }, { $set: { isVerified: true } });
+        await ctx.redirect(api.frontend_api + '/redirect');
     }
-    catch(err){
+    catch (err) {
         ctx.status = 400;
         ctx.body = {
             message: err
