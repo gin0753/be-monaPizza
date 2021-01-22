@@ -35,9 +35,7 @@ router.post("/menu", verifyToken, verifyRole('ROLE.ADMIN'), menuControllers.addP
 router.put("/menu/:userId/:pizzaName", verifyToken, verifyRole('ROLE.ADMIN'), menuControllers.updatePizza);
 router.delete("/menu/:userId/:pizzaName", verifyToken, verifyRole('ROLE.ADMIN'), menuControllers.deletePizza);
 
-
 // ******************************* Model: cart **************************
-
 
 router.get("/cart/:id", validateCart.validateId, cartController.getCartById);
 // http://localhost:3000/cart?userId="..."&pizzaName="..."&pizzaSize="..."
@@ -48,7 +46,6 @@ router.put("/cart/:id", validateCart.validateId, cartController.updateCart);
 router.delete("/cart/:id", validateCart.validateId, cartController.deleteCart);
 router.delete("/cart", cartController.deleteBulkCart);
 
-
 // ******************************* Model: promoCode **************************
 
 // promoCode is a six digital number
@@ -58,8 +55,6 @@ router.get("/promoCode", validateCode.validateCodeInfo, promoCodeController.getC
 router.post("/promoCode", validateCode.validateCodePost, promoCodeController.createCode);
 router.put("/promoCode/:id", validateCode.validateId, promoCodeController.updateCode);
 router.delete("/promoCode/:id", validateCode.validateId, promoCodeController.deleteCode);
-
-
 
 // ***************************** Log in *****************************
 
@@ -73,7 +68,6 @@ router.put('/login/:userId', loginControllers.updatePassword);
 router.get('/confirmation/:token', loginConfirmation.emailConfirm);
 // router.post('/resend', userController.resendTokenPost);
 
-
 // ***************************** Order *****************************
 router.get('/order/:id', orderControllers.displayOneOrder);
 router.get('/order/:userId/:page/:pageSize', orderControllers.displayClientOrder);
@@ -81,19 +75,6 @@ router.post('/order', orderControllers.generateOrder);
 router.post('/order/:status/:page/:pageSize', orderControllers.displayPeningOrders);
 router.put('/order/:id', orderControllers.updateOneOrder)
 router.delete('/order/:id', orderControllers.deleteOrder);
-
-
-
-
-
-
-
-// *********************** Tutor's Demo ****************************
-router.get("/courses", courseControllers.index);
-router.post("/courses", courseControllers.store);
-router.get("/courses/:id", courseControllers.show);
-router.patch("/courses/:id", courseControllers.update);
-router.delete("/courses/:id", courseControllers.destroy);
 
 // ********************************* Old version ****************** 
 
@@ -114,8 +95,6 @@ router.delete('/pizza/:id', pizzaControllers.deletePizza);
 //Feedback
 router.post('/feedback', feedbackController.addFeedback);
 
-
-
 //****blog router function****
 //both shop manager and customer can check blog posts.
 router.get("/blog/:page/:pageSize", blogController.getBlog);
@@ -123,7 +102,6 @@ router.get("/blog/:page/:pageSize", blogController.getBlog);
 router.post("/blog", validateLogin, blogController.createBlog);
 router.put("/blog/:id", validateLogin, blogController.updateBlog);
 router.delete("/blog/:id", validateLogin, blogController.deleteBlog);
-
 
 //payment api
 router.post("/checkout", verifyToken, paymentController.processPayment)
